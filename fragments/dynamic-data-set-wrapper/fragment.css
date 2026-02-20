@@ -1,0 +1,5 @@
+.dynamic-data-set-wrapper tbody > tr:hover {
+	color: var(--primary) !important;
+	font-weight: bold;
+	cursor: alias;
+}

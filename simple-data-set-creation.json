@@ -1,0 +1,60 @@
+{
+  "defaultLanguageId": "en_US",
+  "externalReferenceCode": "DATASET_TEST",
+  "friendlyUrlPath": "industry-contracts-test",
+  "friendlyUrlPath_i18n": {
+    "en_US": "industry-contracts-test"
+  },
+  "defaultItemsPerPage": 4,
+  "propsTransformer": "",
+  "restApplication": "/c/industrycontracts",
+  "dataSetToDataSetSelectionFilters": [
+    {
+      "defaultLanguageId": "en_US",
+      "include": true,
+      "label_i18n": {
+        "en_US": "Contract Status"
+      },
+      "fieldName": "contractStatus.key",
+      "multiple": true,
+      "active": true,
+      "label": "Contract Status",
+      "preselectedValues": "[]",
+      "sourceType": "OBJECT_PICKLIST"
+    }
+  ],
+  "dataSetToDataSetTableSections": [
+    {
+      "defaultLanguageId": "en_US",
+      "label_i18n": {
+        "en_US": "Status"
+      },
+      "renderer": "label",
+      "fieldName": "contractStatus.name",
+      "rendererType": "internal",
+      "active": true,
+      "label": "Status",
+      "sortable": false,
+      "type": "string"
+    }
+  ],
+  "description": "",
+  "dataSetToDataSetDateFilters": [],
+  "itemActionsOrder": "",
+  "dataSetToDataSetClientExtensionFilters": [],
+  "restSchema": "IndustryContract",
+  "additionalAPIURLParameters": "",
+  "active": true,
+  "dataSetToDataSetListSections": [],
+  "label": "Industry Contracts",
+  "filtersOrder": "",
+  "dataSetToDataSetActions": [],
+  "defaultVisualizationMode": "",
+  "listOfItemsPerPage": "4, 8, 20, 40, 60",
+  "sortsOrder": "",
+  "hideManagementBarInEmptyState": false,
+  "snapshotsEnabled": false,
+  "dataSetToDataSetSorts": [],
+  "restEndpoint": "/",
+  "creationActionsOrder": ""
+}

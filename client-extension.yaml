@@ -1,0 +1,20 @@
+assemble:
+  - include:
+      - "**/*.js"
+      - package.json
+page-creation-object-action-user-agent:
+    .serviceAddress: localhost:3001
+    .serviceScheme: http
+    name: Page Creation Object Action User Agent
+    scopes:
+        - Liferay.Headless.Delivery.everything
+        - Liferay.Headless.Admin.Site.everything
+        - c_entitylistdisplaypage.everything.read
+        - c_moldableworkspace.everything.read
+        - c_objectfieldconfiguration.everything.read
+    type: oAuthApplicationUserAgent
+page-creation-object-action:
+    name: Page Creation Object Action
+    oAuth2ApplicationExternalReferenceCode: page-creation-object-action-user-agent
+    resourcePath: /page/action/create
+    type: objectAction

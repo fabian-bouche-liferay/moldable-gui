@@ -1,0 +1,346 @@
+/*
+  POST 'http://localhost:8080/o/headless-admin-site/v1.0/sites/6e589355-ea3e-c049-b47b-31ef9b529c3f/site-pages' 
+*/
+{
+  "availableLanguages": ["en-US"],
+  "externalReferenceCode": "WORKSPACE_PAGE_FOO",
+  "friendlyUrlPath_i18n": { "en-US": "/foo" },
+  "name_i18n": { "en-US": "FOO" },
+  "pageSettings": {
+    "hiddenFromNavigation": false,
+    "priority": 0,
+    "type": "ContentPageSettings"
+  },
+  "pageSpecifications": [
+    {
+      "externalReferenceCode": "WORKSPACE_PAGE_FOO",
+      "type": "ContentPageSpecification",
+      "status": "Approved",
+      "draftContentPageSpecificationExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft",
+      "settings": {
+        "masterPageItemExternalReference": {
+          "externalReferenceCode": "432af5c9-d236-2d0d-6f98-706c712f520b"
+        }
+      },
+      "pageExperiences": [
+        {
+          "key": "DEFAULT",
+          "externalReferenceCode": "WORKSPACE_PAGE_FOO-default",
+          "priority": 0,
+          "name_i18n": { "en-US": "Default" },
+          "pageElements": [
+            {
+              "externalReferenceCode": "WORKSPACE_PAGE_FOO-grid",
+              "parentExternalReferenceCode": "",
+              "position": 0,
+              "pageElementDefinition": {
+                "gridViewports": [
+                  { "customCSS": "", "gridViewportDefinition": { "modulesPerRow": 2 }, "id": "Desktop" },
+                  { "customCSS": "", "gridViewportDefinition": { "modulesPerRow": 1 }, "id": "LandscapeMobile" },
+                  { "customCSS": "", "gridViewportDefinition": {}, "id": "PortraitMobile" },
+                  { "customCSS": "", "gridViewportDefinition": {}, "id": "Tablet" }
+                ],
+                "gutters": true,
+                "indexed": true,
+                "numberOfModules": 2,
+                "reverseOrder": false,
+                "type": "Grid"
+              },
+              "pageElements": [
+                {
+                  "externalReferenceCode": "WORKSPACE_PAGE_FOO-module-left",
+                  "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-grid",
+                  "position": 0,
+                  "pageElementDefinition": {
+                    "moduleViewports": [
+                      { "id": "Desktop", "moduleViewportDefinition": { "size": 6 } },
+                      { "id": "LandscapeMobile", "moduleViewportDefinition": { "size": 12 } }
+                    ],
+                    "type": "Module"
+                  },
+                  "pageElements": [
+                    {
+                      "externalReferenceCode": "WORKSPACE_PAGE_FOO-fds",
+                      "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-module-left",
+                      "position": 0,
+                      "pageElementDefinition": {
+                        "fragmentInstance": {
+                          "configuration": "{\"fieldSets\":[{\"fields\":[{\"name\":\"itemSelector\",\"typeOptions\":{\"itemType\":\"FDSView\"},\"label\":\"data-set-view\",\"type\":\"itemSelector\"}]}]}",
+                          "css": "",
+                          "fragmentConfigurationFieldValues": {
+                            "itemSelector": {
+                              "type": "Item",
+                              "value": {
+                                "itemExternalReference": {
+                                  "className": "com.liferay.object.model.ObjectDefinition",
+                                  "externalReferenceCode": "82830938-2a8f-15ba-2031-3f331d70da52"
+                                }
+                              }
+                            }
+                          },
+                          "fragmentEditableElements": [],
+                          "fragmentReference": {
+                            "defaultFragmentKey": "com.liferay.frontend.data.set.admin.web.internal.fragment.renderer.FDSAdminFragmentRenderer",
+                            "fragmentReferenceType": "DefaultFragmentReference"
+                          },
+                          "html": "",
+                          "indexed": true,
+                          "js": ""
+                        },
+                        "type": "BasicFragment"
+                      },
+                      "pageElements": []
+                    }
+                  ]
+                },
+                {
+                  "externalReferenceCode": "WORKSPACE_PAGE_FOO-module-right",
+                  "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-grid",
+                  "position": 1,
+                  "pageElementDefinition": {
+                    "moduleViewports": [
+                      { "id": "Desktop", "moduleViewportDefinition": { "size": 6 } },
+                      { "id": "LandscapeMobile", "moduleViewportDefinition": { "size": 12 } }
+                    ],
+                    "type": "Module"
+                  },
+                  "pageElements": [
+                    {
+                      "externalReferenceCode": "WORKSPACE_PAGE_FOO-form",
+                      "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-module-right",
+                      "position": 0,
+                      "pageElementDefinition": {
+                        "formContainerConfig": {
+                          "formContainerReference": {
+                            "className": "com.liferay.object.model.ObjectDefinition#N5X9",
+                            "type": "FormContainerClassSubtypeReference"
+                          },
+                          "formContainerType": "Simple",
+                          "numberOfSteps": 0
+                        },
+                        "indexed": true,
+                        "type": "FormContainer"
+                      },
+                      "pageElements": [
+                        {
+                          "externalReferenceCode": "WORKSPACE_PAGE_FOO-field-externalReferenceCode",
+                          "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-form",
+                          "position": 0,
+                          "pageElementDefinition": {
+                            "fieldKey": "ObjectEntry_externalReferenceCode",
+                            "fragmentInstance": {
+                              "configuration": "{\n\t\"fieldSets\": [\n\t\t{\n\t\t\t\"fields\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"\",\n\t\t\t\t\t\"label\": \"placeholder\",\n\t\t\t\t\t\"localizable\": true,\n\t\t\t\t\t\"name\": \"placeholder\",\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"defaultValue\": false,\n\t\t\t\t\t\"label\": \"show-characters-count\",\n\t\t\t\t\t\"name\": \"showCharactersCount\",\n\t\t\t\t\t\"type\": \"checkbox\",\n\t\t\t\t\t\"typeOptions\": { \"displayType\": \"toggle\" }\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+                              "fragmentConfigurationFieldValues": {},
+                              "fragmentEditableElements": [],
+                              "fragmentReference": {
+                                "defaultFragmentKey": "INPUTS-text-input",
+                                "fragmentReferenceType": "DefaultFragmentReference"
+                              },
+                              "indexed": true
+                            },
+                            "type": "FormFragment"
+                          },
+                          "pageElements": []
+                        },
+                        {
+                          "externalReferenceCode": "WORKSPACE_PAGE_FOO-submit",
+                          "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-form",
+                          "position": 1,
+                          "pageElementDefinition": {
+                            "fragmentInstance": {
+                              "configuration": "{\n\t\"fieldSets\": [\n\t\t{\n\t\t\t\"fields\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"submit\",\n\t\t\t\t\t\"label\": \"type\",\n\t\t\t\t\t\"name\": \"type\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": { \"validValues\": [{\"value\":\"previous\"},{\"value\":\"next\"},{\"value\":\"submit\"}] }\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"0\",\n\t\t\t\t\t\"label\": \"submitted-entry-status\",\n\t\t\t\t\t\"name\": \"submittedEntryStatus\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": {\n\t\t\t\t\t\t\"dependency\": { \"type\": { \"type\": \"equal\", \"value\": \"submit\" } },\n\t\t\t\t\t\t\"validValues\": [{\"label\":\"approved\",\"value\":\"0\"},{\"label\":\"draft\",\"value\":\"2\"}]\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"primary\",\n\t\t\t\t\t\"label\": \"style\",\n\t\t\t\t\t\"name\": \"buttonType\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": { \"validValues\": [{\"value\":\"primary\"},{\"value\":\"secondary\"},{\"value\":\"outline-primary\"},{\"value\":\"outline-secondary\"}] }\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"nm\",\n\t\t\t\t\t\"label\": \"size\",\n\t\t\t\t\t\"name\": \"buttonSize\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": { \"validValues\": [{\"label\":\"small\",\"value\":\"sm\"},{\"label\":\"normal\",\"value\":\"nm\"},{\"label\":\"large\",\"value\":\"lg\"}] }\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+                              "fragmentConfigurationFieldValues": {
+                                "buttonType": { "type": "Select", "value": "primary" },
+                                "submittedEntryStatus": { "type": "Select", "value": "0" },
+                                "type": { "type": "Select", "value": "submit" },
+                                "buttonSize": { "type": "Select", "value": "nm" }
+                              },
+                              "fragmentEditableElements": [],
+                              "fragmentReference": {
+                                "defaultFragmentKey": "INPUTS-submit-button",
+                                "fragmentReferenceType": "DefaultFragmentReference"
+                              },
+                              "indexed": true
+                            },
+                            "type": "FormFragment"
+                          },
+                          "pageElements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft",
+      "type": "ContentPageSpecification",
+      "status": "Approved",
+      "settings": {
+        "masterPageItemExternalReference": {
+          "externalReferenceCode": "432af5c9-d236-2d0d-6f98-706c712f520b"
+        }
+      },
+      "pageExperiences": [
+        {
+          "key": "DEFAULT",
+          "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-default",
+          "priority": 0,
+          "name_i18n": { "en-US": "Default" },
+          "pageElements": [
+            {
+              "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-grid",
+              "parentExternalReferenceCode": "",
+              "position": 0,
+              "pageElementDefinition": {
+                "gridViewports": [
+                  { "customCSS": "", "gridViewportDefinition": { "modulesPerRow": 2 }, "id": "Desktop" },
+                  { "customCSS": "", "gridViewportDefinition": { "modulesPerRow": 1 }, "id": "LandscapeMobile" },
+                  { "customCSS": "", "gridViewportDefinition": {}, "id": "PortraitMobile" },
+                  { "customCSS": "", "gridViewportDefinition": {}, "id": "Tablet" }
+                ],
+                "gutters": true,
+                "indexed": true,
+                "numberOfModules": 2,
+                "reverseOrder": false,
+                "type": "Grid"
+              },
+              "pageElements": [
+                {
+                  "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-module-left",
+                  "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft-grid",
+                  "position": 0,
+                  "pageElementDefinition": {
+                    "moduleViewports": [
+                      { "id": "Desktop", "moduleViewportDefinition": { "size": 6 } },
+                      { "id": "LandscapeMobile", "moduleViewportDefinition": { "size": 12 } }
+                    ],
+                    "type": "Module"
+                  },
+                  "pageElements": [
+                    {
+                      "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-fds",
+                      "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft-module-left",
+                      "position": 0,
+                      "pageElementDefinition": {
+                        "fragmentInstance": {
+                          "configuration": "{\"fieldSets\":[{\"fields\":[{\"name\":\"itemSelector\",\"typeOptions\":{\"itemType\":\"FDSView\"},\"label\":\"data-set-view\",\"type\":\"itemSelector\"}]}]}",
+                          "css": "",
+                          "fragmentConfigurationFieldValues": {
+                            "itemSelector": {
+                              "type": "Item",
+                              "value": {
+                                "itemExternalReference": {
+                                  "className": "com.liferay.object.model.ObjectDefinition",
+                                  "externalReferenceCode": "82830938-2a8f-15ba-2031-3f331d70da52"
+                                }
+                              }
+                            }
+                          },
+                          "fragmentEditableElements": [],
+                          "fragmentReference": {
+                            "defaultFragmentKey": "com.liferay.frontend.data.set.admin.web.internal.fragment.renderer.FDSAdminFragmentRenderer",
+                            "fragmentReferenceType": "DefaultFragmentReference"
+                          },
+                          "html": "",
+                          "indexed": true,
+                          "js": ""
+                        },
+                        "type": "BasicFragment"
+                      },
+                      "pageElements": []
+                    }
+                  ]
+                },
+                {
+                  "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-module-right",
+                  "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft-grid",
+                  "position": 1,
+                  "pageElementDefinition": {
+                    "moduleViewports": [
+                      { "id": "Desktop", "moduleViewportDefinition": { "size": 6 } },
+                      { "id": "LandscapeMobile", "moduleViewportDefinition": { "size": 12 } }
+                    ],
+                    "type": "Module"
+                  },
+                  "pageElements": [
+                    {
+                      "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-form",
+                      "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft-module-right",
+                      "position": 0,
+                      "pageElementDefinition": {
+                        "formContainerConfig": {
+                          "formContainerReference": {
+                            "className": "com.liferay.object.model.ObjectDefinition#N5X9",
+                            "type": "FormContainerClassSubtypeReference"
+                          },
+                          "formContainerType": "Simple",
+                          "numberOfSteps": 0
+                        },
+                        "indexed": true,
+                        "type": "FormContainer"
+                      },
+                      "pageElements": [
+                        {
+                          "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-field-externalReferenceCode",
+                          "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft-form",
+                          "position": 0,
+                          "pageElementDefinition": {
+                            "fieldKey": "ObjectEntry_externalReferenceCode",
+                            "fragmentInstance": {
+                              "configuration": "{\n\t\"fieldSets\": [\n\t\t{\n\t\t\t\"fields\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"\",\n\t\t\t\t\t\"label\": \"placeholder\",\n\t\t\t\t\t\"localizable\": true,\n\t\t\t\t\t\"name\": \"placeholder\",\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"defaultValue\": false,\n\t\t\t\t\t\"label\": \"show-characters-count\",\n\t\t\t\t\t\"name\": \"showCharactersCount\",\n\t\t\t\t\t\"type\": \"checkbox\",\n\t\t\t\t\t\"typeOptions\": { \"displayType\": \"toggle\" }\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+                              "fragmentConfigurationFieldValues": {},
+                              "fragmentEditableElements": [],
+                              "fragmentReference": {
+                                "defaultFragmentKey": "INPUTS-text-input",
+                                "fragmentReferenceType": "DefaultFragmentReference"
+                              },
+                              "indexed": true
+                            },
+                            "type": "FormFragment"
+                          },
+                          "pageElements": []
+                        },
+                        {
+                          "externalReferenceCode": "WORKSPACE_PAGE_FOO-draft-submit",
+                          "parentExternalReferenceCode": "WORKSPACE_PAGE_FOO-draft-form",
+                          "position": 1,
+                          "pageElementDefinition": {
+                            "fragmentInstance": {
+                              "configuration": "{\n\t\"fieldSets\": [\n\t\t{\n\t\t\t\"fields\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"submit\",\n\t\t\t\t\t\"label\": \"type\",\n\t\t\t\t\t\"name\": \"type\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": { \"validValues\": [{\"value\":\"previous\"},{\"value\":\"next\"},{\"value\":\"submit\"}] }\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"0\",\n\t\t\t\t\t\"label\": \"submitted-entry-status\",\n\t\t\t\t\t\"name\": \"submittedEntryStatus\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": {\n\t\t\t\t\t\t\"dependency\": { \"type\": { \"type\": \"equal\", \"value\": \"submit\" } },\n\t\t\t\t\t\t\"validValues\": [{\"label\":\"approved\",\"value\":\"0\"},{\"label\":\"draft\",\"value\":\"2\"}]\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"primary\",\n\t\t\t\t\t\"label\": \"style\",\n\t\t\t\t\t\"name\": \"buttonType\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": { \"validValues\": [{\"value\":\"primary\"},{\"value\":\"secondary\"},{\"value\":\"outline-primary\"},{\"value\":\"outline-secondary\"}] }\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"nm\",\n\t\t\t\t\t\"label\": \"size\",\n\t\t\t\t\t\"name\": \"buttonSize\",\n\t\t\t\t\t\"type\": \"select\",\n\t\t\t\t\t\"typeOptions\": { \"validValues\": [{\"label\":\"small\",\"value\":\"sm\"},{\"label\":\"normal\",\"value\":\"nm\"},{\"label\":\"large\",\"value\":\"lg\"}] }\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+                              "fragmentConfigurationFieldValues": {
+                                "buttonType": { "type": "Select", "value": "primary" },
+                                "submittedEntryStatus": { "type": "Select", "value": "0" },
+                                "type": { "type": "Select", "value": "submit" },
+                                "buttonSize": { "type": "Select", "value": "nm" }
+                              },
+                              "fragmentEditableElements": [],
+                              "fragmentReference": {
+                                "defaultFragmentKey": "INPUTS-submit-button",
+                                "fragmentReferenceType": "DefaultFragmentReference"
+                              },
+                              "indexed": true
+                            },
+                            "type": "FormFragment"
+                          },
+                          "pageElements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "viewableBy": "Anyone",
+  "type": "ContentPage"
+}
