@@ -1,8 +1,5 @@
 import {pageElement, withPositions, bindParent} from '../helpers.js';
 
-/**
- * Basic Fragment: FDS Admin
- */
 function basicFragmentFDS({ erc, dataSetERC }) {
   return (ctx) =>
     pageElement({

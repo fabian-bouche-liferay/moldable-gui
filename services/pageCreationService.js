@@ -67,7 +67,7 @@ const createPage = (bearerToken, {dataSetERC, objectDefinitionClassName, objectA
                 {
                     erc: 'dynamic-form-wrapper',
                     fragmentItemERC: DYNAMIC_FORM_WRAPPER_FRAGMENT_ERC,
-                    objectAPIBasePath: objectApiBasePath
+                    objectAPIBasePath: `/o${objectApiBasePath}`
                 },
                 formContainer(
                     { erc: 'form', formContainerSubtypeClassName: objectDefinitionClassName },
@@ -86,17 +86,17 @@ const createPage = (bearerToken, {dataSetERC, objectDefinitionClassName, objectA
         structureBuilder: structure,
     });
 
-    fetch(`${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/headless-admin-site/v1.0/sites/${SITE_ERC}/site-pages`, {
+    console.log(`Calling ${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/headless-admin-site/v1.0/sites/${SITE_ERC}/site-pages/${pageERC}`);
+    fetch(`${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/headless-admin-site/v1.0/sites/${SITE_ERC}/site-pages/${pageERC}`, {
         headers: {
             'Authorization': `Bearer ${bearerToken}`,
             'Content-Type': 'application/json'
         },
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(payload)
     }).then(response => {
         return response.json();
     }).then(json => {
-        console.log(json);
     });
 
 }

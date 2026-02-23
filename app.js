@@ -16,6 +16,7 @@ import {logger} from './util/logger.js';
 
 import { createPage } from './services/pageCreationService.js';
 import { getFields } from './services/fieldsService.js';
+import { createDataSet, updateDataSetErc } from './services/dataSetService.js';
 
 const serverPort = config['server.port'];
 const app = express();
@@ -41,33 +42,62 @@ app.post('/page/action/create', async (req, res) => {
 
 	res.status(200).send();
 
-	console.log(body);
+	//console.log(body);
 
-    const pageERC = body.objectEntry.externalReferenceCode;
-	const friendlyURL = body.objectEntry.values.friendlyURL;
-    const pageName = body.objectEntry.values.title;
-    const masterPageERC = body.objectEntry.values.masterPageERC;
+	const { objectEntry } = body;
 
-	const objectDefinitionClassName = body.objectEntry.values.objectDefinitionClassName;
-	const dataSetERC = body.objectEntry.values.dataSetERC;
+	const pageERC = objectEntry.externalReferenceCode;
 
-	const fields = await getFields(bearerToken, {
-		pageERC: pageERC
-	});
+	const {
+		friendlyURL,
+		title: pageName,
+		masterPageERC,
+		apiBasePath,
+		restSchema,
+		objectDefinitionClassName,
+		dataSetERC: existingDataSetERC,
+	} = objectEntry.values;
 
+	const fields = await getFields(bearerToken, { pageERC });
+	console.log("#####")
 	console.log(fields);
+	console.log("#####")
 
-	createPage(bearerToken, {
-		dataSetERC: dataSetERC,
-		objectDefinitionClassName: objectDefinitionClassName,
-		pageName: pageName,
-		pageERC: pageERC,
-		friendlyURL: friendlyURL,
-		objectApiBasePath: '/o/c/industrycontracts',
-		masterPageERC: masterPageERC,
-		fields: fields
+	const finalDataSetERC = existingDataSetERC != "" ? existingDataSetERC : `${pageERC}_DATASET`;
+
+	if (!existingDataSetERC) {
+		
+		const created = await createDataSet(bearerToken, {
+			dataSetERC: finalDataSetERC,
+			label: `[GENERATED] ${finalDataSetERC}`,
+			friendlyUrlPath: friendlyURL,
+			restApplication: apiBasePath,
+			active: true,
+			defaultItemsPerPage: 4,
+			defaultLanguageId: "en_US",
+			fields,
+			listOfItemsPerPage: "4, 8, 20",
+			restSchema,
+		});
+
+		await updateDataSetErc(bearerToken, {
+			pageERC: pageERC,
+			dataSetERC: finalDataSetERC,
+		})
+
+		console.log(created);
+	}
+
+	await createPage(bearerToken, {
+		dataSetERC: finalDataSetERC,
+		objectDefinitionClassName,
+		pageName,
+		pageERC,
+		friendlyURL,
+		objectApiBasePath: apiBasePath,
+		masterPageERC,
+		fields,
 	});
-
 });
 
 app.listen(serverPort, () => {

@@ -9,9 +9,10 @@ page-creation-object-action-user-agent:
     scopes:
         - Liferay.Headless.Delivery.everything
         - Liferay.Headless.Admin.Site.everything
-        - c_entitylistdisplaypage.everything.read
+        - c_entitylistdisplaypage.everything
         - c_moldableworkspace.everything.read
         - c_objectfieldconfiguration.everything.read
+        - dataset.everything
     type: oAuthApplicationUserAgent
 page-creation-object-action:
     name: Page Creation Object Action

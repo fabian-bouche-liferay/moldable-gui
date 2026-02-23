@@ -2,6 +2,7 @@ import config from '../util/configTreePath.js';
 
 const getFields = (bearerToken, {pageERC}) => {
 
+    console.log(`Calling ${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/c/entitylistdisplaypages/by-external-reference-code/${pageERC}/entityListObjectFieldsRel`);
     return fetch(`${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/c/entitylistdisplaypages/by-external-reference-code/${pageERC}/entityListObjectFieldsRel`, {
         headers: {
             'Authorization': `Bearer ${bearerToken}`

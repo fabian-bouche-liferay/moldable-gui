@@ -1,5 +1,27 @@
 import config from '../util/configTreePath.js';
 
+const FIELD_TYPE_RENDER_MAPPING = new Map([
+  ["Assignee", "label"],
+  ["Aggregation", "label"],
+  ["Attachment", "label"],
+  ["AutoIncrement", "label"],
+  ["Boolean", "label"],
+  ["Date", "date"],
+  ["DateTime", "dateTime"],
+  ["Decimal", "label"],
+  ["Encrypted", "label"],
+  ["Formula", "label"],
+  ["Integer", "label"],
+  ["LongInteger", "label"],
+  ["LongText", "label"],
+  ["MultiselectPicklist", "label"],
+  ["Picklist", "label"],
+  ["PrecisionDecimal", "label"],
+  ["Relationship", "label"],
+  ["RichText", "label"],
+  ["Text", "label"]
+]);
+
 const buildDataSetPayload = (opts) => {
   const {
     dataSetERC,
@@ -23,16 +45,20 @@ const buildDataSetPayload = (opts) => {
 
   const friendlyUrlPathFinal = friendlyUrlPath ?? slugify(label ?? dataSetERC);
 
+  console.log("++++")
+  console.log(fields);
+  console.log("++++")
+
   const dataSetToDataSetTableSections = fields.map(f => ({
     defaultLanguageId,
-    label_i18n: { [defaultLanguageId]: f.label ?? f.fieldName },
-    renderer: f.renderer ?? "",
+    label_i18n: { [defaultLanguageId]: f.fieldLabel ?? f.fieldName },
+    renderer: f.renderer ?? FIELD_TYPE_RENDER_MAPPING.get(f.fieldType) ?? "label",
     fieldName: f.fieldName,
-    rendererType: f.rendererType ?? "",
+    rendererType: f.rendererType ?? "internal",
     active: f.active ?? true,
-    label: f.label ?? f.fieldName,
+    label: f.fieldLabel ?? f.fieldName,
     sortable: f.sortable ?? false,
-    type: f.type ?? "string"
+    type: /*f.fieldType ??*/ "string"
   }));
 
   const dataSetToDataSetSelectionFilters = fields
@@ -44,7 +70,7 @@ const buildDataSetPayload = (opts) => {
       fieldName: f.filter.fieldName,
       multiple: f.filter.multiple ?? false,
       active: f.filter.active ?? true,
-      label: f.filter.label ?? (f.label ?? f.fieldName),
+      label: f.filter.fieldLabel ?? (f.fieldLabel ?? f.fieldName),
       preselectedValues: f.filter.preselectedValues ?? "[]",
       sourceType: f.filter.sourceType
     }));
@@ -81,6 +107,30 @@ const buildDataSetPayload = (opts) => {
   };
 };
 
+const updateDataSetErc = (bearerToken, {pageERC, dataSetERC}) => {
+
+  console.log(`Calling ${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/c/entitylistdisplaypages/by-external-reference-code/${pageERC}`);
+  return fetch(
+    `${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/c/entitylistdisplaypages/by-external-reference-code/${pageERC}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify({
+        dataSetERC: dataSetERC
+      })
+    }
+  ).then(response => {
+    return response.json();
+  }).then(json => {
+    //console.log(json);
+    return json;
+  });
+  
+};
+
 const createDataSet = (bearerToken, {
   dataSetERC,
   label,
@@ -107,6 +157,15 @@ const createDataSet = (bearerToken, {
     active
   });
 
+  /*
+
+  console.log("------------------");
+  console.log(JSON.stringify(payload));
+  console.log("------------------");
+
+*/
+
+  console.log(`Calling ${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/data-set-admin/data-sets/by-external-reference-code/${dataSetERC}`);
   return fetch(
     `${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/data-set-admin/data-sets/by-external-reference-code/${dataSetERC}`,
     {
@@ -126,9 +185,8 @@ const createDataSet = (bearerToken, {
     return data;
   })
   .then(json => {
-    console.log(json);
     return json;
   });
 };
 
-export { createDataSet };
+export { createDataSet, updateDataSetErc };
