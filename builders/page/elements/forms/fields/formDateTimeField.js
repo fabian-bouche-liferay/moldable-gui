@@ -1,6 +1,6 @@
 import {pageElement, withPositions, bindParent} from '../../../helpers.js';
 
-function formSelectField({ fieldName, label }) {
+function formDateTimeField({ fieldName, label }) {
   return (ctx) =>
     pageElement({
       externalReferenceCode: `${ctx.ercPrefix}-field-${fieldName}`,
@@ -12,7 +12,7 @@ function formSelectField({ fieldName, label }) {
           fragmentConfigurationFieldValues: {},
           fragmentEditableElements: [],
           fragmentReference: {
-            defaultFragmentKey: "INPUTS-select-from-list",
+            defaultFragmentKey: "INPUTS-date-time-input",
             fragmentReferenceType: "DefaultFragmentReference",
           },
           indexed: true,
@@ -26,4 +26,4 @@ function formSelectField({ fieldName, label }) {
     });
 }
 
-export default formSelectField;
+export default formDateTimeField;

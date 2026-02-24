@@ -13,6 +13,7 @@ page-creation-object-action-user-agent:
         - c_moldableworkspace.everything.read
         - c_objectfieldconfiguration.everything.read
         - dataset.everything
+        - Liferay.Object.Admin.REST.everything.read
     type: oAuthApplicationUserAgent
 page-creation-object-action:
     name: Page Creation Object Action

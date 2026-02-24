@@ -1,25 +1,25 @@
 import config from '../util/configTreePath.js';
 
 const FIELD_TYPE_RENDER_MAPPING = new Map([
-  ["Assignee", "label"],
-  ["Aggregation", "label"],
-  ["Attachment", "label"],
-  ["AutoIncrement", "label"],
+  ["Assignee", "default"],
+  ["Aggregation", "default"],
+  ["Attachment", "default"],
+  ["AutoIncrement", "default"],
   ["Boolean", "label"],
   ["Date", "date"],
   ["DateTime", "dateTime"],
-  ["Decimal", "label"],
-  ["Encrypted", "label"],
-  ["Formula", "label"],
-  ["Integer", "label"],
-  ["LongInteger", "label"],
-  ["LongText", "label"],
+  ["Decimal", "default"],
+  ["Encrypted", "default"],
+  ["Formula", "default"],
+  ["Integer", "default"],
+  ["LongInteger", "default"],
+  ["LongText", "default"],
   ["MultiselectPicklist", "label"],
   ["Picklist", "label"],
-  ["PrecisionDecimal", "label"],
+  ["PrecisionDecimal", "default"],
   ["Relationship", "label"],
-  ["RichText", "label"],
-  ["Text", "label"]
+  ["RichText", "default"],
+  ["Text", "default"]
 ]);
 
 const buildDataSetPayload = (opts) => {
@@ -49,11 +49,11 @@ const buildDataSetPayload = (opts) => {
   console.log(fields);
   console.log("++++")
 
-  const dataSetToDataSetTableSections = fields.map(f => ({
+  const dataSetToDataSetTableSections = fields.filter(f => f.dataSetDisplay).map(f => ({
     defaultLanguageId,
     label_i18n: { [defaultLanguageId]: f.fieldLabel ?? f.fieldName },
     renderer: f.renderer ?? FIELD_TYPE_RENDER_MAPPING.get(f.fieldType) ?? "label",
-    fieldName: f.fieldName,
+    fieldName: f.fieldType == "Picklist" ? `${f.fieldName}.name`  : f.fieldName,
     rendererType: f.rendererType ?? "internal",
     active: f.active ?? true,
     label: f.fieldLabel ?? f.fieldName,
@@ -105,30 +105,6 @@ const buildDataSetPayload = (opts) => {
     restEndpoint: "/",
     creationActionsOrder: ""
   };
-};
-
-const updateDataSetErc = (bearerToken, {pageERC, dataSetERC}) => {
-
-  console.log(`Calling ${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/c/entitylistdisplaypages/by-external-reference-code/${pageERC}`);
-  return fetch(
-    `${config['com.liferay.lxc.dxp.server.protocol']}://${config['com.liferay.lxc.dxp.mainDomain']}/o/c/entitylistdisplaypages/by-external-reference-code/${pageERC}`,
-    {
-      headers: {
-        'Authorization': `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json'
-      },
-      method: 'PATCH',
-      body: JSON.stringify({
-        dataSetERC: dataSetERC
-      })
-    }
-  ).then(response => {
-    return response.json();
-  }).then(json => {
-    //console.log(json);
-    return json;
-  });
-  
 };
 
 const createDataSet = (bearerToken, {
@@ -189,4 +165,4 @@ const createDataSet = (bearerToken, {
   });
 };
 
-export { createDataSet, updateDataSetErc };
+export { createDataSet };

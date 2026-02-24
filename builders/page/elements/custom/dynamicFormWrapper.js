@@ -24,10 +24,22 @@ Liferay.on("selectedClassPK", (e) => {
 			console.log("Field");
 			console.log(field);
 			let fieldName = field.getAttribute("data-field-name");
-			let fieldInput = null;
-			fieldInput = field.querySelector(\`input[name='\${fieldName}']\`);
+			let fieldInput = field.querySelector(\`input[name='\${fieldName}']\`);
 			if(fieldInput != null) {
 				switch(field.getAttribute("data-field-type")) {
+					case 'html':
+						let editorInstance = field.querySelector(\`.ck-editor__editable\`).ckeditorInstance;
+						if (editorInstance) {
+							editorInstance.setData(json[fieldName.split("_")[1]]);
+						}
+						return;
+					case 'select':
+						let fieldInputLabel = field.querySelector(\`input[name='\${fieldName}-label']\`);
+						let fieldInputDisplay = fieldInputLabel.parentElement.querySelector(\`input[name='']\`);
+						fieldInput.value = json[fieldName.split("_")[1]].key;
+						fieldInputLabel.value = json[fieldName.split("_")[1]].name;
+						fieldInputDisplay.value = json[fieldName.split("_")[1]].name;
+						return;
 					case 'date':
 						fieldInput.value = json[fieldName.split("_")[1]].split("T")[0];
 						return;
@@ -51,7 +63,7 @@ function dynamicFormWrapper(
   ...dropzoneChildBuilders
 ) {
   return (ctx) => {
-    const parentERC = `${ctx.ercPrefix}-${erc}`;
+    const parentERC = `\${ctx.ercPrefix}-\${erc}`;
 
     const resolvedFieldValues =
       fragmentConfigurationFieldValues ??
@@ -62,7 +74,7 @@ function dynamicFormWrapper(
         : {});
 
     const dzChildren = dropzoneChildBuilders.map((b) => b(ctx));
-    const dropzoneERC = `${parentERC}-dropzone`;
+    const dropzoneERC = `\${parentERC}-dropzone`;
 
     return pageElement({
       externalReferenceCode: parentERC,

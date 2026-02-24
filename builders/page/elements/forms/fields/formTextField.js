@@ -9,13 +9,17 @@ function formTextField({ fieldName, label }) {
         fragmentInstance: {
           configuration:
             "{\n\t\"fieldSets\": [\n\t\t{\n\t\t\t\"fields\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataType\": \"string\",\n\t\t\t\t\t\"defaultValue\": \"\",\n\t\t\t\t\t\"label\": \"placeholder\",\n\t\t\t\t\t\"localizable\": true,\n\t\t\t\t\t\"name\": \"placeholder\",\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"defaultValue\": false,\n\t\t\t\t\t\"label\": \"show-characters-count\",\n\t\t\t\t\t\"name\": \"showCharactersCount\",\n\t\t\t\t\t\"type\": \"checkbox\",\n\t\t\t\t\t\"typeOptions\": {\n\t\t\t\t\t\t\"displayType\": \"toggle\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
-          fragmentConfigurationFieldValues: {},
+          fragmentConfigurationFieldValues: {
+          },
           fragmentEditableElements: [],
           fragmentReference: {
             defaultFragmentKey: "INPUTS-text-input",
             fragmentReferenceType: "DefaultFragmentReference",
           },
           indexed: true,
+        },
+        label_i18n: {
+          "en-US": `${label}`
         },
         type: "FormFragment",
       },

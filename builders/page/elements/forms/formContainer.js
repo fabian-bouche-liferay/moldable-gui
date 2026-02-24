@@ -13,6 +13,9 @@ function formContainer({ erc, formContainerSubtypeClassName, formContainerType =
             className: formContainerSubtypeClassName,
             type: "FormContainerClassSubtypeReference",
           },
+          successFormContainerSubmissionResult: {
+            type: "StayInPage"
+          },
           formContainerType,
           numberOfSteps,
         },

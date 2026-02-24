@@ -7,7 +7,11 @@ import module from '../builders/page/elements/module.js';
 import basicFragmentFDS from '../builders/page/elements/fdsAdmin.js';
 import formContainer from '../builders/page/elements/forms/formContainer.js';
 import formTextField from '../builders/page/elements/forms/fields/formTextField.js';
+import formNumericField from '../builders/page/elements/forms/fields/formTextField.js';
 import formDateField from '../builders/page/elements/forms/fields/formDateField.js';
+import formDateTimeField from '../builders/page/elements/forms/fields/formDateField.js';
+import formRichTextField from '../builders/page/elements/forms/fields/formRichTextField.js';
+import formFileUploadField from '../builders/page/elements/forms/fields/formFileUploadField.js';
 import formSelectField from '../builders/page/elements/forms/fields/formSelectField.js';
 import formSubmitButton from '../builders/page/elements/forms/formSubmitButton.js';
 import dynamicDataSetWrapper from '../builders/page/elements/custom/dynamicDataSetWrapper.js';
@@ -34,18 +38,26 @@ const createPage = (bearerToken, {dataSetERC, objectDefinitionClassName, objectA
 
     const buildFieldElement = (f) => {
         switch (f.fieldType) {
+            case "Integer":
+                return formNumericField({ fieldName: f.fieldName, label: f.fieldLabel });
             case "Text":
                 return formTextField({ fieldName: f.fieldName, label: f.fieldLabel });
+            case "RichText":
+                return formRichTextField({ fieldName: f.fieldName, label: f.fieldLabel });
+            case "Upload":
+                return formFileUploadField({ fieldName: f.fieldName, label: f.fieldLabel });
             case "Select":
                 return formSelectField({ fieldName: f.fieldName, label: f.fieldLabel });
             case "Date":
                 return formDateField({ fieldName: f.fieldName, label: f.fieldLabel });
+            case "DateTime":
+                return formDateTimeField({ fieldName: f.fieldName, label: f.fieldLabel });
             default:
                 throw new Error(`Unknown field type: ${f.fieldType}`);
         }
     };
 
-    const formChildren = fields.map(buildFieldElement);
+    const formChildren = fields.filter(f => f.formContainerDisplay).map(buildFieldElement);
 
     const structure = grid(
         { erc: 'grid', gridViewports: GRID_VIEWPORTS, numberOfModules: 2 },
@@ -97,6 +109,7 @@ const createPage = (bearerToken, {dataSetERC, objectDefinitionClassName, objectA
     }).then(response => {
         return response.json();
     }).then(json => {
+        console.log(json)
     });
 
 }

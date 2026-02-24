@@ -16,7 +16,9 @@ import {logger} from './util/logger.js';
 
 import { createPage } from './services/pageCreationService.js';
 import { getFields } from './services/fieldsService.js';
-import { createDataSet, updateDataSetErc } from './services/dataSetService.js';
+import { createDataSet } from './services/dataSetService.js';
+import { updateDataSetErc, updateObjectDefinitionInfo } from './services/pageConfigurationService.js';
+import { getObjectDefinitionInfo } from './services/objectsService.js';
 
 const serverPort = config['server.port'];
 const app = express();
@@ -52,11 +54,26 @@ app.post('/page/action/create', async (req, res) => {
 		friendlyURL,
 		title: pageName,
 		masterPageERC,
-		apiBasePath,
-		restSchema,
-		objectDefinitionClassName,
+		objectDefinitionERC,
 		dataSetERC: existingDataSetERC,
 	} = objectEntry.values;
+
+	let objectDefinitionClassName = objectEntry.values.objectDefinitionClassName;
+	let apiBasePath = objectEntry.values.apiBasePath;
+	let restSchema = objectEntry.values.restSchema;
+
+	if(objectDefinitionClassName == "" || apiBasePath == "" || restSchema == "" ) {
+		const objectDefinitionInfo = await getObjectDefinitionInfo(bearerToken, objectDefinitionERC);
+		objectDefinitionClassName = objectDefinitionInfo.className;
+		apiBasePath = objectDefinitionInfo.apiBasePath;
+		restSchema = objectDefinitionInfo.restSchema;
+		updateObjectDefinitionInfo(bearerToken, {
+			pageERC,
+			className: objectDefinitionClassName,
+			restSchema,
+			apiBasePath
+		});
+	}
 
 	const fields = await getFields(bearerToken, { pageERC });
 	console.log("#####")

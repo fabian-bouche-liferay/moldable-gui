@@ -1,29 +1,48 @@
 import {pageElement, withPositions, bindParent} from '../../../helpers.js';
 
-function formSelectField({ fieldName, label }) {
+const configuration = `
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "",
+					"label": "placeholder",
+					"localizable": true,
+					"name": "placeholder",
+					"type": "text"
+				}
+			]
+		}
+	]
+}
+`;
+
+function formNumericField({ fieldName, label }) {
   return (ctx) =>
     pageElement({
       externalReferenceCode: `${ctx.ercPrefix}-field-${fieldName}`,
       pageElementDefinition: {
         fieldKey: `ObjectField_${fieldName}`,
         fragmentInstance: {
-          configuration:
-            "{\n\t\"fieldSets\": []\n}",
-          fragmentConfigurationFieldValues: {},
+          configuration: configuration,
+          fragmentConfigurationFieldValues: {
+          },
           fragmentEditableElements: [],
           fragmentReference: {
-            defaultFragmentKey: "INPUTS-select-from-list",
+            defaultFragmentKey: "INPUTS-numeric-upload",
             fragmentReferenceType: "DefaultFragmentReference",
           },
           indexed: true,
         },
-        type: "FormFragment",
         label_i18n: {
           "en-US": `${label}`
         },
+        type: "FormFragment",
       },
       pageElements: [],
     });
 }
 
-export default formSelectField;
+export default formNumericField;

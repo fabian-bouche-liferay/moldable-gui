@@ -9,12 +9,16 @@ const getFields = (bearerToken, {pageERC}) => {
         },
         method: 'GET'
     }).then(response => {
+        console.log(response);
         return response.json();
     }).then(json => {
+        console.log(json);
         return json.items.map(item => ({
             fieldType: item.fieldType.key,
             fieldName: item.fieldName,
-            fieldLabel: item.objectFieldLabel
+            fieldLabel: item.objectFieldLabel,
+            dataSetDisplay: item.dataSetDisplayedField,
+            formContainerDisplay: item.editableField
         }))
     });
 

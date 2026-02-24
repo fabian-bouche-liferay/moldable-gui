@@ -1,6 +1,6 @@
 import {pageElement, withPositions, bindParent} from '../../../helpers.js';
 
-function formSelectField({ fieldName, label }) {
+function formRichTextField({ fieldName, label }) {
   return (ctx) =>
     pageElement({
       externalReferenceCode: `${ctx.ercPrefix}-field-${fieldName}`,
@@ -9,21 +9,22 @@ function formSelectField({ fieldName, label }) {
         fragmentInstance: {
           configuration:
             "{\n\t\"fieldSets\": []\n}",
-          fragmentConfigurationFieldValues: {},
+          fragmentConfigurationFieldValues: {
+          },
           fragmentEditableElements: [],
           fragmentReference: {
-            defaultFragmentKey: "INPUTS-select-from-list",
+            defaultFragmentKey: "INPUTS-rich-text-input",
             fragmentReferenceType: "DefaultFragmentReference",
           },
           indexed: true,
         },
-        type: "FormFragment",
         label_i18n: {
           "en-US": `${label}`
         },
+        type: "FormFragment",
       },
       pageElements: [],
     });
 }
 
-export default formSelectField;
+export default formRichTextField;

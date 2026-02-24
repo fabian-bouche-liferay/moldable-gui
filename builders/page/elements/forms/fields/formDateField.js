@@ -1,6 +1,6 @@
 import {pageElement, withPositions, bindParent} from '../../../helpers.js';
 
-function formDateField({ fieldName }) {
+function formDateField({ fieldName, label }) {
   return (ctx) =>
     pageElement({
       externalReferenceCode: `${ctx.ercPrefix}-field-${fieldName}`,
@@ -18,6 +18,9 @@ function formDateField({ fieldName }) {
           indexed: true,
         },
         type: "FormFragment",
+        label_i18n: {
+          "en-US": `${label}`
+        },
       },
       pageElements: [],
     });
