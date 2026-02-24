@@ -53,7 +53,7 @@ const buildDataSetPayload = (opts) => {
     defaultLanguageId,
     label_i18n: { [defaultLanguageId]: f.fieldLabel ?? f.fieldName },
     renderer: f.renderer ?? FIELD_TYPE_RENDER_MAPPING.get(f.fieldType) ?? "label",
-    fieldName: f.fieldType == "Picklist" ? `${f.fieldName}.name`  : f.fieldName,
+    fieldName: f.fieldType == "Select" ? `${f.fieldName}.name`  : f.fieldName,
     rendererType: f.rendererType ?? "internal",
     active: f.active ?? true,
     label: f.fieldLabel ?? f.fieldName,
